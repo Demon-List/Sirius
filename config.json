@@ -1,13 +1,13 @@
 {
-  "test_server_ids": ["12345678"],
+  "test_server_ids": ["162862229065039872"],
 
-  "developer_ids": ["12345678"],
+  "developer_ids": ["208779984276291585"],
 
   "lockBotToDevOnly": false,
   
   "enableWebServer": true,
   "serverPort": 6880,
-  "siteURL": "http://localhost:6880",
+  "siteURL": "https://sirius.arkane.moe",
   
   "changelogURL": "",
   "supportURL": ""
