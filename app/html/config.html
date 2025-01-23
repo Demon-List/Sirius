@@ -4,12 +4,12 @@
     <meta charset="UTF-8">
     <link href="/css/polaris.css?v=3" type="text/css" rel="stylesheet">
     <link rel="icon" href="/assets/polaris.svg">
-    <title>Polaris</title>
+    <title>Sirius</title>
 
-    <meta property="og:title" content="Polaris">
+    <meta property="og:title" content="Sirius">
     <meta property="og:description" content="An open-source XP bot">
     <meta property="og:type" content="website">
-    <meta name="theme-color" content="#00ff80">
+    <meta name="theme-color" content="#00E5FF">
     <meta name="twitter:card" content="summary">
     <meta name="robots" content="noindex">
 </head>
@@ -821,9 +821,9 @@
                 </label>
 
                 <div id="customEmbedColRankConfig" class="centerflex" style="display: none">
-                    <input style="width: 100px; margin-left: 20px" class="colorInput" for="customEmbedColRank" maxlength="7" value="#00ff80" placeholder="#00ff80">
+                    <input style="width: 100px; margin-left: 20px" class="colorInput" for="customEmbedColRank" maxlength="7" value="#00E5FF" placeholder="#00E5FF">
                     <div style="margin-left: 10px" class="colInputPreview" for="customEmbedColRank" tabindex="0"></div>
-                    <input class="hiddenColInput previewColorInput" value="#00ff80" type="color" id="customEmbedColRank" db="rankCard.embedColor" saveName="db" useIf="useCustomEmbedColRank">
+                    <input class="hiddenColInput previewColorInput" value="#00E5FF" type="color" id="customEmbedColRank" db="rankCard.embedColor" saveName="db" useIf="useCustomEmbedColRank">
                 </div>
             </div>
         </div>
@@ -838,9 +838,9 @@
                 </label>
 
                 <div id="customEmbedColTopConfig" class="centerflex" style="display: none">
-                    <input style="width: 100px; margin-left: 20px" class="colorInput" for="customEmbedColTop" maxlength="7" value="#00ff80" placeholder="#00ff80">
+                    <input style="width: 100px; margin-left: 20px" class="colorInput" for="customEmbedColTop" maxlength="7" value="#00E5FF" placeholder="#00E5FF">
                     <div style="margin-left: 10px" class="colInputPreview" for="customEmbedColTop" tabindex="0"></div>
-                    <input class="hiddenColInput previewColorInput" value="#00ff80" type="color" id="customEmbedColTop" db="leaderboard.embedColor" saveName="db" useIf="useCustomEmbedColTop">
+                    <input class="hiddenColInput previewColorInput" value="#00E5FF" type="color" id="customEmbedColTop" db="leaderboard.embedColor" saveName="db" useIf="useCustomEmbedColTop">
                 </div>
             </div>
         </div>
@@ -1128,7 +1128,7 @@
 
         // extra info on home
         updateHomeInfo = function(data) {
-            $('p[cat="extra"][category="xp"]').text(data.enabled ? `Enabled! ${commafy(data["gain.min"])}${data["gain.min"] == data["gain.max"] ? "" : `-${commafy(data["gain.max"])}`} XP every ${commafy(data["gain.time"])}s` : "XP disabled!").css("color", data.enabled ? "var(--polarisgreen)" : "#ff6666")
+            $('p[cat="extra"][category="xp"]').text(data.enabled ? `Enabled! ${commafy(data["gain.min"])}${data["gain.min"] == data["gain.max"] ? "" : `-${commafy(data["gain.max"])}`} XP every ${commafy(data["gain.time"])}s` : "XP disabled!").css("color", data.enabled ? "var(--siriusblue)" : "#ff6666")
             $('p[cat="extra"][category="rewardroles"]').text(data.rewards.length ? addS(data.rewards.length, "reward role") : "No reward roles")
             $('p[cat="extra"][category="levelup"]').text(data["levelUp.enabled"] && data["levelUp.message"] ? `Enabled!${data["levelUp.embed"] ? " (embedded)" : ""}` : "Disabled")
             $('p[cat="extra"][category="multipliers"]').text(`${addS(data["multipliers.roles"].length, "role")}, ${addS(data["multipliers.channels"].length, "channel")}`)

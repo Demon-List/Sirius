@@ -22,7 +22,9 @@ html {
     --defaultrolecol: #dddddd;
 
     --colon: #ff8000;
-    --polarisgreen: #00E5FF;
+    --arkane: #C3B1E1;
+    --polarisgreen: #00ff80;
+    --siriusblue: #00E5FF;
 
     --sliderwidth: 60px;
     --sliderheight: 32px;
@@ -135,7 +137,7 @@ button:disabled {
 .fancybutton {
     font-family: var(--opensans);
     background-color: rgba(0, 0, 0, 0);
-    border: 2px solid var(--polarisgreen);
+    border: 2px solid var(--siriusblue);
     transition-duration: 0.25s;
     height: 50px;
     min-width: 140px;
@@ -143,7 +145,7 @@ button:disabled {
 }
 
 .fancybutton:hover, .fancybutton:focus-visible {
-    background-color: var(--polarisgreen);
+    background-color: var(--siriusblue);
     color: black;
 }
 
@@ -177,7 +179,7 @@ textarea {
     width: 40px;
     border: 1px solid black;
     border-radius: 4px;
-    background-color: var(--polarisgreen);
+    background-color: var(--siriusblue);
     cursor: pointer;
 }
 
@@ -409,7 +411,7 @@ input:checked + .sliderspan:before {
 }
 
 #header div:hover h2, #header div:focus-visible h2 {
-    color: var(--polarisgreen);
+    color: var(--siriusblue);
 }
 
 #header div:focus-visible h2 {
@@ -828,7 +830,7 @@ input:checked + .sliderspan:before {
     padding: 5px 20px;
     font-size: 20px;
     font-weight: bold;
-    color: var(--polarisgreen);
+    color: var(--siriusblue);
     cursor: pointer;
     text-decoration: underline; 
 }

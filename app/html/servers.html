@@ -4,11 +4,11 @@
     <meta charset="UTF-8">
     <link href="/css/polaris.css" type="text/css" rel="stylesheet">
     <link rel="icon" href="/assets/polaris.svg">
-    <title>Polaris</title>
-    <meta property="og:title" content="Polaris">
+    <title>Sirius</title>
+    <meta property="og:title" content="Sirius">
     <meta property="og:description" content="An open-source XP bot">
     <meta property="og:type" content="website">
-    <meta name="theme-color" content="#00ff80">
+    <meta name="theme-color" content="#00E5FF">
     <meta name="twitter:card" content="summary">
 </head>
 <body>
@@ -74,7 +74,7 @@ Fetch(`./api/guilds`).then(data => {
     sortedGuilds.forEach((x, y) => {
         let slot = serverSlot.clone()
         slot.find('[sv=icon]').attr("src", x.icon ? `https://cdn.discordapp.com/icons/${x.id}/${x.icon}.png` : "./assets/avatar.png")
-        slot.find('[sv=name]').text(x.name).attr("title", x.name).css("color", x.xp ? "#00ff80" : "white")
+        slot.find('[sv=name]').text(x.name).attr("title", x.name).css("color", x.xp ? "#00E5FF" : "white")
         slot.find('[sv=status]').text(x.permissions.owner ? "Server owner" : x.permissions.server ? "Moderator" : "Member")
 
         if (x.inServer) {
