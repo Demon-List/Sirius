@@ -1,8 +1,8 @@
 module.exports = {
 metadata: {
-    permission: "ManageGuild",
+    permission: "BanMembers",
     name: "addxp",
-    description: "Add or remove XP from a member. (requires manage server permission)",
+    description: "Add or remove XP from a member. (requires ban members permission)",
     args: [
         { type: "user", name: "member", description: "Which member to modify", required: true },
         { type: "integer", name: "xp", description: "How much XP to add (negative number to remove XP)", min: -1e10, max: 1e10, required: true },
@@ -26,7 +26,7 @@ async run(client, int, tools) {
 
     let db = await tools.fetchSettings(user.id)
     if (!db) return tools.warn("*noData")
-    else if (!tools.canManageServer(int.member, db.settings.manualPerms)) return tools.warn("*notMod")
+    else if (!tools.canBanMembers(int.member, db.settings.manualPerms)) return tools.warn("*notMod")
     else if (!db.settings.enabled) return tools.warn("*xpDisabled")
 
     if (amount === 0 && operation.startsWith("add")) return tools.warn("Invalid amount of XP!")

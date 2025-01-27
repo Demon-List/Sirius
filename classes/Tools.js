@@ -16,6 +16,10 @@ class Tools {
             return nahnvm || (member && member.permissions.has(Discord.PermissionFlagsBits.ManageGuild))
         }
 
+        this.canBanMembers = function(member=int?.member, nahnvm) {
+            return nahnvm || (member && member.permissions.has(Discord.PermissionFlagsBits.BanMembers))
+        }
+
         // has manage roles perm
         this.canManageRoles = function(member=int?.member, nahnvm) {
             return nahnvm || (member && member.permissions.has(Discord.PermissionFlagsBits.ManageRoles))
