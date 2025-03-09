@@ -16,6 +16,7 @@ metadata: {
 },
 
 async run(client, int, tools) {
+    await int.deferReply();
 
     const member = int.options.get("member")?.member
     const amount = int.options.get("xp")?.value
@@ -60,7 +61,7 @@ async run(client, int, tools) {
     let xpDiff = newXP - xp
 
     client.db.update(int.guild.id, { $set: { [`users.${user.id}.xp`]: newXP } }).then(() => {
-        int.reply(`${newXP > xp ? "⏫" : "⏬"} ${user.displayName} now has **${tools.commafy(newXP)}** XP${newLevel != level ? ` and is **level ${newLevel}**` : ""}! (previously ${tools.commafy(xp)}, ${xpDiff >= 0 ? "+" : ""}${tools.commafy(xpDiff)})`)
+        int.followUp(`${newXP > xp ? "⏫" : "⏬"} ${user.displayName} now has **${tools.commafy(newXP)}** XP${newLevel != level ? ` and is **level ${newLevel}**` : ""}! (previously ${tools.commafy(xp)}, ${xpDiff >= 0 ? "+" : ""}${tools.commafy(xpDiff)})`)
     }).catch(() => tools.warn("Something went wrong while trying to modify XP!"))
 
 }}

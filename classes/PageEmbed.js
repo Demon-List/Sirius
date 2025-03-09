@@ -75,7 +75,7 @@ class PageEmbed {
 
         let pgButtonRow = pageButtons[0] ? tools.row(pageButtons) : null
         
-        if (!this.int) return int.reply(Object.assign({ embeds: [this.embed], components: pgButtonRow, fetchReply: true, ephemeral: this.ephemeral }, msgSettings)).then(msg => {
+        if (!this.int) return int.followUp(Object.assign({ embeds: [this.embed], components: pgButtonRow, fetchReply: true, ephemeral: this.ephemeral }, msgSettings)).then(msg => {
             this.int = int
             if (this.pages > 1) this.handleButtons(msg, pageButtons)
         }).catch(() => {})

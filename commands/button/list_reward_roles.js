@@ -6,6 +6,7 @@ metadata: {
 },
 
 async run(client, int, tools) {
+    await int.deferReply();
     let db = await tools.fetchSettings()
     if (!db) return tools.warn("*noData")
 

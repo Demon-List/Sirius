@@ -12,6 +12,7 @@ metadata: {
 },
 
 async run(client, int, tools) {
+    await int.deferReply();
 
     let lbLink = `${tools.WEBSITE}/leaderboard/${int.guild.id}`
 
