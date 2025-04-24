@@ -16,6 +16,7 @@ async run(client, int, tools) {
 
     let botStatus = [
         `**Original creator:** **[Colon](https://gdcolon.com)** 🦊⛩️`,
+        `**Fork maintained by:** **[Arkane](https://arkane.moe)**`,
         `**Version:** v${versionNumber} - updated <t:${Math.round(client.version.updated / 1000)}:R>`,
         `**Shard:** ${client.shard.id}/${client.shard.count - 1}`,
         `**Uptime:** ${tools.timestamp(client.uptime)}`,
