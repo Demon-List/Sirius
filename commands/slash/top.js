@@ -17,9 +17,9 @@ async run(client, int, tools) {
     let lbLink = `${tools.WEBSITE}/leaderboard/${int.guild.id}`
 
     let db = await tools.fetchAll()
-    if (!db || !db.users || !Object.keys(db.users).length) return tools.warn(`Nobody in this server is ranked yet!`);
-    else if (!db.settings.enabled) return tools.warn("*xpDisabled")
-    else if (db.settings.leaderboard.disabled) return tools.warn("The leaderboard is disabled in this server!" + (tools.canManageServer(int.member) ? `\nAs a moderator, you can still privately view the leaderboard here: ${lbLink}` : ""))
+    if (!db || !db.users || !Object.keys(db.users).length) return tools.warn(`Nobody in this server is ranked yet!`, true);
+    else if (!db.settings.enabled) return tools.warn("*xpDisabled", true)
+    else if (db.settings.leaderboard.disabled) return tools.warn("The leaderboard is disabled in this server!" + (tools.canManageServer(int.member) ? `\nAs a moderator, you can still privately view the leaderboard here: ${lbLink}` : ""), true)
 
     let pageNumber = int.options.get("page")?.value || 1
     let pageSize = 10
@@ -30,13 +30,13 @@ async run(client, int, tools) {
 
     if (db.settings.leaderboard.maxEntries > 0) rankings = rankings.slice(0, db.settings.leaderboard.maxEntries)
 
-    if (!rankings.length) return tools.warn("Nobody in this server is on the leaderboard yet!")
+    if (!rankings.length) return tools.warn("Nobody in this server is on the leaderboard yet!", true)
 
     let highlight = null
     let userSearch = int.options.get("user") || int.options.get("member") // option is "user" if from context menu
     if (userSearch) {
         let foundRanking = rankings.findIndex(x => x.id == userSearch.user.id)
-        if (isNaN(foundRanking) || foundRanking < 0) return tools.warn(int.user.id == userSearch.user.id ? "You aren't on the leaderboard!" : "This member isn't on the leaderboard!")
+        if (isNaN(foundRanking) || foundRanking < 0) return tools.warn(int.user.id == userSearch.user.id ? "You aren't on the leaderboard!" : "This member isn't on the leaderboard!", true)
         else pageNumber = Math.floor(foundRanking / pageSize) + 1
         highlight = userSearch.user.id
     }
@@ -56,7 +56,7 @@ async run(client, int, tools) {
         mapFunction: (x, y, p) => `**${p})** ${x.id == highlight ? "**" : ""}Lv. ${tools.getLevel(x.xp, db.settings)} - <@${x.id}> (${tools.commafy(x.xp)} XP)${x.id == highlight ? "**" : ""}`,
         extraButtons: [ tools.button({style: "Link", label: "Online Leaderboard", url: lbLink}) ]
     })
-    if (!xpEmbed.data.length) return tools.warn("There are no members on this page!")
+    if (!xpEmbed.data.length) return tools.warn("There are no members on this page!", true)
 
     xpEmbed.post(int)
 

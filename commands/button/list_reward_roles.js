@@ -8,11 +8,11 @@ metadata: {
 async run(client, int, tools) {
     await int.deferReply();
     let db = await tools.fetchSettings()
-    if (!db) return tools.warn("*noData")
+    if (!db) return tools.warn("*noData", true)
 
-    if (!tools.canManageServer(int.member, db.settings.manualPerms)) return tools.warn("*notMod")
+    if (!tools.canManageServer(int.member, db.settings.manualPerms)) return tools.warn("*notMod", true)
 
-    if (!db.settings.rewards.length) return tools.warn("This server doesn't have any reward roles!")
+    if (!db.settings.rewards.length) return tools.warn("This server doesn't have any reward roles!", true)
 
     let embed = tools.createEmbed({
         title: `Reward Roles (${db.settings.rewards.length})`,

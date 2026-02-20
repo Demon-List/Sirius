@@ -15,23 +15,28 @@ metadata: {
     ]
 },
 
+/**
+ * 
+ * @param {import("discord.js").Client} client 
+ * @param {import("discord.js").ChatInputCommandInteraction} int 
+ * @param {import("../../classes/Tools")} tools 
+ */
 async run(client, int, tools) {
     await int.deferReply();
 
-    const member = int.options.get("member")?.member
+    const user = int.options.get("member")?.user
     const amount = int.options.get("xp")?.value
     const operation = int.options.get("operation")?.value || "add_xp"
 
-    let user = member?.user
-    if (!user) return tools.warn("I couldn't find that member!")
+    if (!user) return tools.warn("I couldn't find that member!", true)
 
     let db = await tools.fetchSettings(user.id)
-    if (!db) return tools.warn("*noData")
-    else if (!tools.canBanMembers(int.member, db.settings.manualPerms)) return tools.warn("*notMod")
-    else if (!db.settings.enabled) return tools.warn("*xpDisabled")
+    if (!db) return tools.warn("*noData", true)
+    else if (!tools.canBanMembers(int.member, db.settings.manualPerms)) return tools.warn("*notMod", true)
+    else if (!db.settings.enabled) return tools.warn("*xpDisabled", true)
 
-    if (amount === 0 && operation.startsWith("add")) return tools.warn("Invalid amount of XP!")
-    else if (user.bot) return tools.warn("You can't give XP to bots, silly!")
+    if (amount === 0 && operation.startsWith("add")) return tools.warn("Invalid amount of XP!", true)
+    else if (user.bot) return tools.warn("You can't give XP to bots, silly!", true)
 
     let currentXP = db.users[user.id]
     let xp = currentXP?.xp || 0
@@ -62,6 +67,6 @@ async run(client, int, tools) {
 
     client.db.update(int.guild.id, { $set: { [`users.${user.id}.xp`]: newXP } }).then(() => {
         int.followUp(`${newXP > xp ? "⏫" : "⏬"} ${user.displayName} now has **${tools.commafy(newXP)}** XP${newLevel != level ? ` and is **level ${newLevel}**` : ""}! (previously ${tools.commafy(xp)}, ${xpDiff >= 0 ? "+" : ""}${tools.commafy(xpDiff)})`)
-    }).catch(() => tools.warn("Something went wrong while trying to modify XP!"))
+    }).catch(() => tools.warn("Something went wrong while trying to modify XP!", true))
 
 }}

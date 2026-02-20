@@ -9,15 +9,15 @@ metadata: {
 async run(client, int, tools) {
     await int.deferReply();
     let db = await tools.fetchSettings()
-    if (!db) return tools.warn("*noData")
+    if (!db) return tools.warn("*noData", true)
 
-    if (!tools.canManageServer(int.member, db.settings.manualPerms)) return tools.warn("*notMod")
+    if (!tools.canManageServer(int.member, db.settings.manualPerms)) return tools.warn("*notMod", true)
 
     let isChannel = int.customId.split("~")[1] == "channels"
     let mType = isChannel ? "channel" : "role"
     let mList = db.settings.multipliers[isChannel ? "channels" : "roles"]
 
-    if (!mList.length) return tools.warn(`This server doesn't have any ${mType} multipliers!`)
+    if (!mList.length) return tools.warn(`This server doesn't have any ${mType} multipliers!`, true)
 
     let embed = tools.createEmbed({
         title: `${tools.capitalize(mType)} Multipliers (${mList.length})`,
