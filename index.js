@@ -122,7 +122,7 @@ client.on("interactionCreate", async int => {
     else if (config.lockBotToDevOnly && !tools.isDev()) return tools.warn("Only developers can use this bot!")
 
     try { await foundCommand.run(client, int, tools) }
-    catch(e) { console.error(e); int.reply({ content: "**Error!** " + e.message, ephemeral: true }) }
+    catch(e) { console.error(e); int.followUp({ content: "**Error!** " + e.message, ephemeral: true }) }
 })
 
 client.on('error', e => console.warn(e))
