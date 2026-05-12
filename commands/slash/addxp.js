@@ -60,7 +60,7 @@ async run(client, int, tools) {
 
     let syncMode = db.settings.rewardSyncing.sync
     if (syncMode == "xp" || (syncMode == "level" && newLevel != level) || (newLevel > level)) { 
-        let roleCheck = tools.checkLevelRoles(int.guild.roles.cache, member.roles.cache, newLevel, db.settings.rewards)
+        let roleCheck = tools.checkLevelRoles(int.guild.roles.cache, user.member.roles.cache, newLevel, db.settings.rewards)
         tools.syncLevelRoles(member, roleCheck).catch(() => {})
     }
     let xpDiff = newXP - xp
