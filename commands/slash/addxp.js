@@ -24,10 +24,11 @@ metadata: {
 async run(client, int, tools) {
     await int.deferReply();
 
-    const user = int.options.get("member")?.user
+    const member = int.options.get("member")?.member
     const amount = int.options.get("xp")?.value
     const operation = int.options.get("operation")?.value || "add_xp"
 
+    let user = member?.user
     if (!user) return tools.warn("I couldn't find that member!", true)
 
     let db = await tools.fetchSettings(user.id)
@@ -60,7 +61,7 @@ async run(client, int, tools) {
 
     let syncMode = db.settings.rewardSyncing.sync
     if (syncMode == "xp" || (syncMode == "level" && newLevel != level) || (newLevel > level)) { 
-        let roleCheck = tools.checkLevelRoles(int.guild.roles.cache, user.member.roles.cache, newLevel, db.settings.rewards)
+        let roleCheck = tools.checkLevelRoles(int.guild.roles.cache, member.roles.cache, newLevel, db.settings.rewards)
         tools.syncLevelRoles(member, roleCheck).catch(() => {})
     }
     let xpDiff = newXP - xp
